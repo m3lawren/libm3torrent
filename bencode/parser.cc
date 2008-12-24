@@ -14,7 +14,7 @@ namespace BEncode {
 			 * bencode/tokenizer.h
 			 */
 			INT,
-			STR,
+			STRING,
 			COLON,
 			D,
 			E,
@@ -31,7 +31,7 @@ namespace BEncode {
 
 		Node(enum NodeType t, std::string v = "") : type(t), value(v) {}
 		enum NodeType type;
-		std::string    value;
+		std::string   value;
 	};
 
 	bool operator==(const Node& a, const Token& b) {
@@ -56,13 +56,14 @@ namespace BEncode {
 
 			while (toks.size() && stack.size()) {
 				Node cur = stack.top();
+				const Token& t = toks.front();
 				stack.pop();
-				if (toks.front() == cur) {
+				if (t == cur) {
 					toks.erase(toks.begin());
 				} else {
 					switch (cur.type) {
 						case Node::S:
-							switch (toks.front().type) {
+							switch (t.type) {
 								case Token::D:
 								case Token::I:
 								case Token::L:
@@ -75,7 +76,7 @@ namespace BEncode {
 							}
 							break;
 						case Node::VALUE:
-							switch (toks.front().type) {
+							switch (t.type) {
 								case Token::D:
 									// rule 5
 									stack.push(Node::E);
@@ -102,10 +103,10 @@ namespace BEncode {
 									assert(1 == 0);
 							}
 						case Node::STRVALUE:
-							switch (toks.front().type) {
+							switch (t.type) {
 								case Token::INT:
 									// rule 6
-									stack.push(Node::STR);
+									stack.push(Node::STRING);
 									stack.push(Node::COLON);
 									stack.push(Node::INT);
 									break;
@@ -113,7 +114,7 @@ namespace BEncode {
 									assert(1 == 0);
 							}
 						case Node::LIST:
-							switch (toks.front().type) {
+							switch (t.type) {
 								case Token::D:
 								case Token::I:
 								case Token::L:
@@ -129,7 +130,7 @@ namespace BEncode {
 									assert(1 == 0);
 							}
 						case Node::DICT:
-							switch (toks.front().type) {
+							switch (t.type) {
 								case Token::E:
 									// rule 10
 									break;
