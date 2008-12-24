@@ -33,6 +33,14 @@ namespace BEncode {
 		const char* first = str;
 		enum { SNONE, SNEG, SINT } state = SNONE;
 
+		/*
+		 * Unfortunately, bencoded data cannot be tokenized by a straight DFA due
+		 * to the way strings behave. Regardless, we treat as much as possible as
+		 * a DFA until we hit a semicolon. In that case we will try to treat the
+		 * data as a string, but if we can't, then we attempt to treat it as
+		 * normal bencoded data.
+		 */
+
 		while (str < end) {
 			switch (state) {
 				case SNONE:
