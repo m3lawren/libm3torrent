@@ -4,3 +4,7 @@
 .*.sw*
 tags
 libm3torrent_test
+*.gcno
+*.gcda
+*.gcov
+gmon.out
