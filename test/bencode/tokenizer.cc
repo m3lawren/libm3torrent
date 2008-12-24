@@ -129,7 +129,16 @@ TOK_TEST(string) {
 
 /* TODO: is this the logical error message? */
 TOK_TEST(stringOverrun) {
+	Tokens t;
+
 	XTS_ASSERT_THROWS_EQUALS(BEncode::tokenize("4:foo", 5), BEncode::TokenizerError, BEncode::TokenizerError("Unexpected character.", 2));
+
+	t = BEncode::tokenize("4:d:", 4);
+	XTS_ASSERT_EQUALS(4, t.size());
+	CHECK_INT(t[0], 4);
+	XTS_ASSERT_EQUALS(T_COLON, t[1]);
+	XTS_ASSERT_EQUALS(T_D, t[2]);
+	XTS_ASSERT_EQUALS(T_COLON, t[3]);
 } TOK_END
 
 /* TODO: should we have an error here? */
