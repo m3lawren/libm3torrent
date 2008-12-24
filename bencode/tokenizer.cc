@@ -57,12 +57,11 @@ namespace BEncode {
 						case ':':
 							if (toks.back().type == Token::INT) {
 								int64_t slen = intValue(toks.back());
-								assert(slen >= 0);
-								*str++;
-								assert(slen <= end - str);
 								toks.push_back(Token(":", Token::COLON)); // in here because we check toks.back()
-								toks.push_back(Token(str, slen, Token::STRING));
-								str += slen - 1; // - 1 because str gets incremented later
+								if (slen >= 0 && slen < end - str) {
+									toks.push_back(Token(str + 1, slen, Token::STRING));
+									str += slen;
+								}
 							} else {
 								toks.push_back(Token(":", Token::COLON));
 							}
@@ -86,7 +85,7 @@ namespace BEncode {
 							state = SINT;
 							break;
 						default:
-							assert(1 == 0);
+							THROW("Unexpected character.");
 					}
 					*str++;
 					break;
