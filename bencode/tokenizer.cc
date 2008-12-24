@@ -55,7 +55,7 @@ namespace BEncode {
 							state = SNONE;
 							break;
 						case ':':
-							if (toks.back().type == Token::INT) {
+							if (toks.size() != 0 && toks.back().type == Token::INT) {
 								int64_t slen = intValue(toks.back());
 								toks.push_back(Token(":", Token::COLON)); // in here because we check toks.back()
 								if (slen >= 0 && slen < end - str) {
