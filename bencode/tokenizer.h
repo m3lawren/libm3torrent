@@ -7,6 +7,10 @@
 namespace BEncode {
 	struct Token {
 		enum TokenType { 
+			/* 
+			 * The order here must match the order in enum NodeType in
+			 * bencode/parser.cc.
+			 */
 			INT, 
 			STRING, 
 			COLON, 
