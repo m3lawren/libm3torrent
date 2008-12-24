@@ -138,8 +138,6 @@ namespace BEncode {
 				break;
 			case SNEG:
 				THROW_FIRST("Invalid integer value.");
-			default:
-				assert(1 == 0);
 		}
 
 		return toks;
