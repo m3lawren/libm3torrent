@@ -6,6 +6,7 @@ sources = [
 	'integer.cc',
 	'list.cc',
 
+	'parser.cc',
 	'tokenizer.cc',
 ]
 

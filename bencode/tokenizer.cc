@@ -142,9 +142,4 @@ namespace BEncode {
 
 		return toks;
 	}
-
-	Element* parse(const char* str, size_t len) {
-		std::vector<Token> toks = tokenize(str, len);
-		return NULL;
-	}
 }
