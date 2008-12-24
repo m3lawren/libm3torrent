@@ -1,5 +1,6 @@
-#include <bencode/bencode.h>
+#include <bencode/tokenizer.h>
 
+#include <bencode/element.h>
 #include <cassert>
 #include <sstream>
 

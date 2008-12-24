@@ -1,5 +1,6 @@
-#include <bencode/bencode.h>
+#include <bencode/dictionary.h>
 
+#include <bencode/bytestr.h>
 #include <sstream>
 
 namespace BEncode {
