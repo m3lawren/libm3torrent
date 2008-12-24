@@ -1,0 +1,14 @@
+Import('env')
+
+sources = [
+	'main.cc',
+	'XTest.cc',
+]
+
+objs = []
+for source in sources:
+	objs.append(env.Object(source))
+
+objs.append(SConscript('bencode/SConscript'))
+
+Return('objs')
