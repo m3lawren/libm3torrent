@@ -6,7 +6,7 @@
 
 namespace BEncode {
 
-	static int64_t intValue(const struct Token& t) {
+	int64_t intValue(const struct Token& t) {
 		assert(t.type == Token::INT);
 		std::istringstream s(t.value);
 		std::ostringstream o;

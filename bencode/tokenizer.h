@@ -22,6 +22,7 @@ namespace BEncode {
 		enum TokenType type;
 	};
 
+	int64_t            intValue(const Token&);
 	std::vector<Token> tokenize(const char*, size_t len);
 }
 
