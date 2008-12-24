@@ -1,4 +1,4 @@
-#include <bencode.h>
+#include <bencode/bencode.h>
 
 #include <sstream>
 

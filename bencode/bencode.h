@@ -23,6 +23,8 @@ namespace BEncode {
 		enum TokenType type;
 	};
 
+	std::vector<Token> tokenize(const char*, size_t len);
+
 	class Element {
 		public:
 			enum ElementType {

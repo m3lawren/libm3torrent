@@ -1,0 +1,15 @@
+Import('env')
+
+sources = [
+	'bencode.cc',
+	'bencode_bytestr.cc',
+	'bencode_dictionary.cc',
+	'bencode_integer.cc',
+	'bencode_list.cc',
+]
+
+objs = []
+for source in sources:
+	objs.append(env.Object(source))
+
+Return('objs')
