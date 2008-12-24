@@ -59,7 +59,7 @@ namespace BEncode {
 								int64_t slen = intValue(toks.back());
 								assert(slen >= 0);
 								*str++;
-								assert(slen < end - str);
+								assert(slen <= end - str);
 								toks.push_back(Token(":", Token::COLON)); // in here because we check toks.back()
 								toks.push_back(Token(str, slen, Token::STRING));
 								str += slen - 1; // - 1 because str gets incremented later
