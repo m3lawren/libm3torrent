@@ -120,6 +120,17 @@ namespace BEncode {
 					break;
 			}
 		}
+	
+		switch (state) {
+			case SNONE:
+				break;
+			case SINT:
+				toks.push_back(Token(first, str - first, Token::INT));
+				break;
+			default:
+				assert(1 == 0);
+		}
+
 		return toks;
 	}
 
