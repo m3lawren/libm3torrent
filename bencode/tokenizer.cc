@@ -4,6 +4,16 @@
 #include <cassert>
 #include <sstream>
 
+#define _THROW(d, ptr) { \
+	std::ostringstream __s; \
+	size_t pos = len - (end - ptr); \
+	__s << d; \
+	throw TokenizerError(__s.str(), pos); \
+}
+
+#define THROW(d) _THROW(d, str)
+#define THROW_FIRST(d) _THROW(d, first)
+
 namespace BEncode {
 
 	int64_t intValue(const struct Token& t) {
@@ -94,7 +104,7 @@ namespace BEncode {
 							state = SINT;
 							break;
 						default:
-							assert(1 == 0);
+							THROW_FIRST("Invalid integer value.");
 					}
 					*str++;
 					break;
@@ -127,6 +137,8 @@ namespace BEncode {
 			case SINT:
 				toks.push_back(Token(first, str - first, Token::INT));
 				break;
+			case SNEG:
+				THROW_FIRST("Invalid integer value.");
 			default:
 				assert(1 == 0);
 		}

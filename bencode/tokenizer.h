@@ -18,8 +18,17 @@ namespace BEncode {
 
 		Token(const char* s, enum TokenType t) : value(s), type(t) {}
 		Token(const char* s, size_t n, enum TokenType t) : value(s, n), type(t) {}
+
 		std::string value;
 		enum TokenType type;
+	};
+
+	struct TokenizerError {
+		TokenizerError(const std::string& s, size_t p) : description(s), pos(p) {}
+
+		std::string description;
+		size_t      pos;
+
 	};
 
 	int64_t            intValue(const Token&);
