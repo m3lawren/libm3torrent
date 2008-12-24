@@ -1,0 +1,30 @@
+1  S        -> VALUE
+2  VALUE    -> 'i' int 'e'
+3  VALUE    -> STRVALUE
+4  VALUE    -> 'l' LIST 'e'
+5  VALUE    -> 'd' DICT 'e'
+6  STRVALUE -> int ':' str
+7  LIST     -> VALUE LIST
+8  LIST     -> epsilon 
+9  DICT     -> STRVALUE VALUE DICT
+10 DICT     -> epsilon 
+
+First(S)        = { 'i', 'l', 'd', int }
+First(VALUE)    = { 'i', 'l', 'd', int } 
+First(STRVALUE) = { int } 
+First(LIST)     = { 'i', 'l', 'd', epsilon, int }
+First(DICT)     = { int, epsilon }
+
+Follow(S)        = { $ }
+Follow(VALUE)    = { $, 'e', 'i', 'l', 'd', int }
+Follow(STRVALUE) = { $, 'i', 'l', 'd', int }
+Follow(LIST)     = { 'e' }
+Follow(DICT)     = { 'e' }
+
+         | 'd' | 'e' | 'i' | 'l' | int | $
+---------+-----+-----+-----+-----+-----+---
+S        |  1  |  -  |  1  |  1  |  1  | -
+VALUE    |  5  |  -  |  2  |  4  |  3  | -
+STRVALUE |  -  |  -  |  -  |  -  |  6  | -
+LIST     |  7  |  8  |  7  |  7  |  7  | -
+DICT     |  -  | 10  |  -  |  -  |  9  | -
