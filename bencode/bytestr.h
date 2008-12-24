@@ -21,7 +21,7 @@ namespace BEncode {
 			ByteStr& operator=(const ByteStr&);
 
 			char* _buf;
-			uint64_t _len;
+			size_t _len;
 	};
 
 }
