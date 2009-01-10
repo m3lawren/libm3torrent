@@ -13,7 +13,7 @@ namespace BEncode {
 				DICTIONARY
 			};
 
-			virtual ~Element();
+			virtual ~Element() {}
 
 			virtual ElementType type() const = 0;
 			virtual std::string toString() const = 0;
